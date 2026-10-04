@@ -65,7 +65,7 @@ jobs:
       - name: Checkout Code 
         uses: actions/checkout@v5
         with:
-        fetch-depth: 0
+          fetch-depth: 0
 
       - name: Run Trivy Filesystem  scan
         uses: aquasecurity/trivy-action@v0.36.0
