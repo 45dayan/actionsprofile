@@ -61,6 +61,7 @@ jobs:
         #security scanning
   Security_Scan: 
     runs-on: ubuntu-latest 
+    needs: Build
     steps:
       - name: Checkout Code 
         uses: actions/checkout@v5
