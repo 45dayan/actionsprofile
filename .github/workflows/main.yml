@@ -91,7 +91,7 @@ jobs:
 
   BUILD_AND_PUBLISH:
     name: Build_AND_PUBLISH
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     environment: production
     needs: [Build, Testing, Security_Scan]
     if: github.ref == 'refs/heads/main'
