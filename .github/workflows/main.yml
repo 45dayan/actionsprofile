@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 env:
-  ECR_REPOSITORY: 'vprofile-appimage'
+    DOCKERHUB_REPO: 'vprofile-appimage''
 
 jobs:
   Build:
@@ -101,28 +101,20 @@ jobs:
         with:
           fetch-depth: 0
         
-# CONNECTING AWS WITH WORKFLOW
-      - name:  Configure  AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
         with:
-          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
-          aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          aws-region: ${{vars.AWS_REGION}}
+          username: ${{secrects.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_PASSWORD}}
 
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Build, tag, and push image to Amazon ECR
+      - name: Build, tag, and push image to Docker hub
         id: build-image 
         env:
-          ECR_REGISTRY: ${{steps.login-ecr.outputs.registry}}
           IMAGE_TAG: ${{github.sha}}
 
         run: |
-          docker build -f Docker-files/app/multistage/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
+          docker build -f Docker-files/app/multistage/Dockerfile -t dayan45/vprofile-appimage:$IMAGE_TAG .
+          docker push dayan45/vprofile-appimage:$IMAGE_TAG 
 
         
         
