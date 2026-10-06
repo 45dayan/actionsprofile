@@ -115,6 +115,7 @@ jobs:
         run: |
           docker build -f Docker-files/app/multistage/Dockerfile -t dayan45/vprofile-appimage:$IMAGE_TAG .
           docker push dayan45/vprofile-appimage:$IMAGE_TAG 
+          
 
         
         
