@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 env:
-    DOCKERHUB_REPO: 'vprofile-appimage''
+    DOCKERHUB_REPO: 'vprofile-appimage'
 
 jobs:
   Build:
